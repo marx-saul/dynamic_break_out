@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scene/Ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://script/Main.gd" type="Script" id=2]
+[ext_resource path="res://script/Blocks.gd" type="Script" id=3]
+[ext_resource path="res://scene/Block.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/Bar.tscn" type="PackedScene" id=5]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.0
+bounce = 0.7
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 46.233, 412.345 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 236.349, 42.3985 )
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.0
+
+[node name="root" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Ball" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 30 )
+
+[node name="Blocks" type="Node" parent="."]
+script = ExtResource( 3 )
+Block = ExtResource( 4 )
+
+[node name="Bar" parent="." instance=ExtResource( 5 )]
+position = Vector2( 225, 700 )
+
+[node name="Wall" type="Node2D" parent="."]
+
+[node name="LRWall" type="RigidBody2D" parent="Wall"]
+mode = 3
+physics_material_override = SubResource( 3 )
+
+[node name="right" type="CollisionShape2D" parent="Wall/LRWall"]
+position = Vector2( 496, 400 )
+shape = SubResource( 2 )
+
+[node name="left" type="CollisionShape2D" parent="Wall/LRWall"]
+position = Vector2( -46, 400 )
+shape = SubResource( 2 )
+
+[node name="UpWall" type="RigidBody2D" parent="Wall"]
+mode = 3
+physics_material_override = SubResource( 3 )
+
+[node name="up" type="CollisionShape2D" parent="Wall/UpWall"]
+position = Vector2( 225, -42 )
+shape = SubResource( 1 )
+
+[node name="DownWall" type="RigidBody2D" parent="Wall"]
+mode = 3
+physics_material_override = SubResource( 4 )
+gravity_scale = 0.0
+
+[node name="down" type="CollisionShape2D" parent="Wall/DownWall"]
+position = Vector2( 225, 842 )
+shape = SubResource( 1 )

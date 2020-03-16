@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Ball" type="RigidBody2D"]
+mode = 2
+physics_material_override = SubResource( 1 )
+continuous_cd = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Boundary" type="Line2D" parent="."]
+points = PoolVector2Array( 10.0304, 0.0601492, 9.68896, -2.60388, 8.67581, -4.9679, 7.06227, -7.10678, 5.11101, -8.57022, 2.63442, -9.6209, 0.00772667, -9.95861, -2.58144, -9.6209, -4.98299, -8.60774, -7.04681, -7.10678, -8.54778, -5.08047, -9.59846, -2.7915, -10.0112, 0.02281, -9.59846, 2.57445, -8.66035, 5.01352, -7.12186, 7.0023, -5.17061, 8.54079, -2.76718, 9.6138, -0.0222931, 9.97028, 2.58001, 9.72074, 5.00407, 8.58001, 7.14294, 7.0115, 8.7471, 4.97957, 9.67395, 2.66245, 10.0304, -0.0467944 )
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
