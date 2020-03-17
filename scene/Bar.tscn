@@ -27,3 +27,9 @@ __meta__ = {
 points = PoolVector2Array( 35, -10, -35, -10, -35, 10, 35, 10, 35, -10 )
 width = 1.0
 default_color = Color( 1, 1, 1, 1 )
+
+[node name="arrow" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 0, 0, 100, 100 )
+width = 1.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
