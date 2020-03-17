@@ -4,7 +4,7 @@ export (PackedScene) var Block;
 
 func _ready():
 	var block = Block.instance();
-	block.init(100, 100, 100, 10);
+	block.init(200, 100, 100, 10);
 	add_child(block);
 
 

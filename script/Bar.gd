@@ -11,8 +11,7 @@ export (float) var max_y = 800;
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+"""func _physics_process(delta):
 	var current_mouse_position = get_viewport().get_mouse_position();
 	
 	if   ( position.y > max_y ):
@@ -35,11 +34,28 @@ func _physics_process(delta):
 		vx = vx / magnitude * max_speed;
 		vy = vy / magnitude * max_speed;
 	else:
-		var magnitude = sqrt(mag2);
 		vx /= ease_move_level;
 		vy /= ease_move_level;
 	# set Bar's velocity
-	linear_velocity = Vector2(vx, vy);
-	
+	linear_velocity = Vector2(vx, vy);"""
 	#position = get_viewport().get_mouse_position();
-	
+
+var clicked_position: Vector2 = Vector2(0, 0);
+func _input(event):
+	if event is InputEventMouseButton:
+		# click
+		if (event.is_pressed()):
+			clicked_position = event.position;
+			linear_velocity = Vector2(0, 0);
+		# unclick
+		else:
+			# add force
+			var diff = event.position - clicked_position;
+			# |diff| <= max_speed
+			var mag2 = pow(diff.x, 2) + pow(diff.y, 2)
+			if (mag2 > max_speed_power2):
+				var magnitude = sqrt(mag2);
+				diff = diff * max_speed / magnitude;
+			# add
+			apply_central_impulse(diff * mass);
+			clicked_position = Vector2(0, 0);
